@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-950: #051329;
+  --color-brand-900: #0A2540;
+  --color-brand-800: #0F325C;
+  --color-brand-700: #154580;
+  --color-brand-600: #1D63BD;
+  --color-brand-500: #2563EB;
+  --color-brand-400: #38BDF8;
+  --color-brand-100: #E0F2FE;
+  --color-brand-50: #F0F9FF;
+
+  --color-accent-500: #D97706;
+  --color-accent-400: #F59E0B;
+  --color-accent-300: #FACC15;
+  --color-accent-100: #FEF9C3;
+  --color-accent-50: #FEFCE8;
+
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    color: #1e293b;
+    background-color: #f8fafc;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom utility styles */
+.gradient-mesh {
+  background-color: #0A2540;
+  background-image: 
+    radial-gradient(at 10% 20%, rgba(37, 99, 235, 0.35) 0px, transparent 50%),
+    radial-gradient(at 90% 10%, rgba(245, 158, 11, 0.2) 0px, transparent 40%),
+    radial-gradient(at 50% 80%, rgba(56, 189, 248, 0.25) 0px, transparent 50%);
+}
+
+.gradient-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(241, 245, 249, 0.9) 100%);
+}
