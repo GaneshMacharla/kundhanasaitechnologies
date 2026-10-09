@@ -1,36 +1,28 @@
 import React from 'react';
+import { SEOHead } from '../components/SEOHead';
 import { HeroSection } from '../components/HeroSection';
-import { TrustStrip } from '../components/TrustStrip';
-import { FeaturedCourses } from '../components/FeaturedCourses';
-import { WhyChooseUs } from '../components/WhyChooseUs';
-import { TrainingJourney } from '../components/TrainingJourney';
-import { PlacementSection } from '../components/PlacementSection';
-import { BatchSection } from '../components/BatchSection';
-import { StudentBenefits } from '../components/StudentBenefits';
-import { TechnologyGrid } from '../components/TechnologyGrid';
-import { AboutSnippet } from '../components/AboutSnippet';
-import { SolutionsSnippet } from '../components/SolutionsSnippet';
-import { TestimonialsSection } from '../components/TestimonialsSection';
-import { FAQSection } from '../components/FAQSection';
-import { CtaBanner } from '../components/CtaBanner';
+import { CompanyIntroSection } from '../components/CompanyIntroSection';
+import { ServicesSection } from '../components/ServicesSection';
+import { TechnologyExpertiseSection } from '../components/TechnologyExpertiseSection';
+import { ValuePropositionSection } from '../components/ValuePropositionSection';
+import { IndustriesSection } from '../components/IndustriesSection';
+import { ContactCtaSection } from '../components/ContactCtaSection';
 
 export const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col min-h-screen">
+      <SEOHead
+        title="Engineering Intelligence. Enabling Transformation."
+        description="Kundhana Sai IT Solutions helps businesses unlock new possibilities through intelligent AI, modern data platforms, cloud engineering and enterprise technology solutions."
+        canonicalPath="/"
+      />
       <HeroSection />
-      <TrustStrip />
-      <FeaturedCourses />
-      <WhyChooseUs />
-      <TrainingJourney />
-      <PlacementSection />
-      <BatchSection />
-      <StudentBenefits />
-      <TechnologyGrid />
-      <AboutSnippet />
-      <SolutionsSnippet />
-      <TestimonialsSection />
-      <FAQSection />
-      <CtaBanner />
+      <CompanyIntroSection />
+      <ServicesSection />
+      <TechnologyExpertiseSection />
+      <ValuePropositionSection />
+      <IndustriesSection />
+      <ContactCtaSection />
     </div>
   );
 };

@@ -1,464 +1,206 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
-  MapPin, 
-  Phone, 
   Mail, 
-  MessageSquare, 
-  Clock, 
-  AlertCircle, 
-  Send, 
-  CheckCircle2, 
+  Phone, 
+  MapPin, 
   ShieldCheck, 
-  Building2,
-  Calendar
+  Clock, 
+  Building2, 
+  Sparkles,
+  Info,
+  CheckCircle2
 } from 'lucide-react';
-import { COMPANY_DATA } from '../data/companyData';
-import { COURSES } from '../data/coursesData';
+import { SEOHead } from '../components/SEOHead';
+import { CORPORATE_DATA } from '../data/corporateData';
+import { ContactForm } from '../components/ContactForm';
 
 export const ContactPage: React.FC = () => {
-  const [fullName, setFullName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [course, setCourse] = useState('Generative AI & Agentic AI');
-  const [qualification, setQualification] = useState('B.Tech / B.E.');
-  const [experience, setExperience] = useState('Fresh Graduate (0 years)');
-  const [mode, setMode] = useState('Online Live Training');
-  const [preferredBatch, setPreferredBatch] = useState('Morning Batch (7:30 AM)');
-  const [message, setMessage] = useState('');
-
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  const hydLocation = COMPANY_DATA.locations.find(l => l.city === 'Hyderabad');
-  const vjaLocation = COMPANY_DATA.locations.find(l => l.city === 'Vijayawada');
-
-  const validate = () => {
-    const errs: { [key: string]: string } = {};
-    if (!fullName.trim()) errs.fullName = 'Full Name is required';
-    if (!phone.trim()) {
-      errs.phone = 'Phone number is required';
-    } else if (!/^[0-9+ -]{10,14}$/.test(phone.trim())) {
-      errs.phone = 'Please enter a valid 10-digit phone number';
-    }
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errs.email = 'Please enter a valid email address';
-    }
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!validate()) return;
-
-    setIsSubmitting(true);
-    setTimeout(() => {
-      const enquiryLead = {
-        id: 'CONTACT-' + Date.now(),
-        fullName,
-        phone,
-        email,
-        course,
-        qualification,
-        experience,
-        mode,
-        preferredBatch,
-        message,
-        createdAt: new Date().toISOString()
-      };
-
-      try {
-        const existing = JSON.parse(localStorage.getItem('kst_leads') || '[]');
-        existing.push(enquiryLead);
-        localStorage.setItem('kst_leads', JSON.stringify(existing));
-      } catch (err) {
-        console.warn(err);
-      }
-
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 600);
-  };
+  const primaryPhone = CORPORATE_DATA.phoneNumbers[0];
+  const secondaryPhone = CORPORATE_DATA.phoneNumbers[1];
+  const hqLocation = CORPORATE_DATA.locations.find(l => l.isHeadquarter) || CORPORATE_DATA.locations[0];
+  const regionalLocation = CORPORATE_DATA.locations.find(l => !l.isHeadquarter);
 
   return (
-    <div className="bg-slate-50 min-h-screen">
-      {/* Header */}
-      <div className="bg-gradient-to-b from-[#0A2540] via-[#0F325C] to-[#0A2540] text-white py-16 sm:py-20 relative overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-blue-300 text-xs font-bold uppercase tracking-wider mb-4">
-            <Building2 className="w-3.5 h-3.5" /> Admissions &amp; Corporate Enquiries
-          </div>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold font-heading text-white tracking-tight">
-            Contact Kundhana Sai Technologies
-          </h1>
-          <p className="text-blue-100 text-sm sm:text-base max-w-2xl mx-auto mt-3">
-            Visit our training centre in Hyderabad, connect via WhatsApp, or submit your enquiry to book a free introductory demo class.
-          </p>
-        </div>
-      </div>
+    <div className="flex flex-col min-h-screen bg-white text-slate-900">
+      <SEOHead
+        title="Contact Us | Corporate Headquarters &amp; Enterprise Desk"
+        description="Connect with Kundhana Sai IT Solutions Pvt. Ltd. Corporate office in Hyderabad and regional center in Vijayawada. Schedule an enterprise IT consultation."
+        canonicalPath="/contact"
+      />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        {/* Verification Alert Banner for Stakeholders */}
-        <div className="bg-amber-50 border border-amber-300 rounded-2xl p-5 text-amber-900 text-xs shadow-xs">
-          <div className="flex items-start gap-3">
-            <AlertCircle className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-            <div className="space-y-1">
-              <strong className="font-bold text-sm">
-                Client Verification Notice (Pre-Production Demo):
-              </strong>
-              <p>
-                The provided marketing materials contain two slight variations in Hyderabad address &amp; pincode (PIN 500072 vs 500085 in KPHB 9th Phase) as well as Vijayawada branch details. Both are transparently highlighted below for final client sign-off before official publication.
-              </p>
+      {/* Hero Header */}
+      <section className="bg-[#050E1D] text-white py-16 sm:py-20 border-b border-slate-800 relative overflow-hidden">
+        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none" />
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-3xl space-y-4">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider">
+              <Mail className="w-3.5 h-3.5" />
+              <span>Direct Enterprise Engagement</span>
             </div>
+
+            <h1 className="text-4xl sm:text-5xl font-heading font-black tracking-tight text-white">
+              Connect With Our Solutions Team.
+            </h1>
+
+            <p className="text-base sm:text-lg text-slate-300 leading-relaxed">
+              Have an architecture roadmap to evaluate or an enterprise technology initiative to kick off? Reach out directly via our corporate form or phone hotlines.
+            </p>
           </div>
         </div>
+      </section>
 
-        {/* Contact Information Cards & Form Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
-          {/* Left Column: Location Cards & Hotline Info */}
-          <div className="lg:col-span-5 space-y-6">
-            {/* Hyderabad Training Centre Card */}
-            <div className="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm space-y-4">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-700 bg-blue-50 px-2.5 py-1 rounded-md">
-                  Headquarters &amp; Training Centre
-                </span>
-                <span className="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded">
-                  VERIFY WITH CLIENT
-                </span>
+      {/* Main Content Grid: Offices on Left, Form on Right */}
+      <section className="py-16 sm:py-24 bg-slate-50 border-b border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+            
+            {/* Left Column: Office Locations & Contact Points (5 cols) */}
+            <div className="lg:col-span-5 space-y-8">
+              <div>
+                <h2 className="text-2xl font-heading font-black text-slate-900 tracking-tight mb-2">
+                  Corporate Offices &amp; Desks
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-600">
+                  Headquartered in Hyderabad with regional presence in Vijayawada and global delivery coverage.
+                </p>
               </div>
 
-              <h3 className="text-xl font-bold font-heading text-slate-900 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-blue-600" />
-                Hyderabad, Telangana
-              </h3>
+              {/* Hyderabad HQ Card */}
+              <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 text-cyan-700 font-bold text-xs uppercase tracking-wider">
+                    <Building2 className="w-4 h-4" />
+                    <span>Corporate Headquarters</span>
+                  </div>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-cyan-50 text-cyan-800 border border-cyan-200">
+                    Active HQ
+                  </span>
+                </div>
 
-              {hydLocation && (
-                <div className="space-y-3 text-xs text-slate-600">
-                  <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                    <span className="font-bold text-slate-900 block mb-1">Primary Listing (Plot No. 45):</span>
-                    <p>{hydLocation.addressLines[0]}</p>
-                    <p>{hydLocation.addressLines[1]}</p>
-                    <p className="font-semibold text-slate-800 mt-1">
-                      Kukatpally, Hyderabad – {hydLocation.pincode}, Telangana
-                    </p>
+                <h3 className="text-xl font-heading font-bold text-slate-900">
+                  Hyderabad Technology Center
+                </h3>
+
+                <p className="text-sm text-slate-600 leading-relaxed">
+                  {hqLocation.addressLines[0]}<br />
+                  {hqLocation.addressLines[1]}<br />
+                  {hqLocation.city} – {hqLocation.pincode}, {hqLocation.state}, {hqLocation.country}
+                </p>
+
+                {/* Pre-production verification transparency note */}
+                <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-500 space-y-1">
+                  <div className="font-semibold text-slate-700 flex items-center gap-1">
+                    <Info className="w-3.5 h-3.5 text-blue-600" />
+                    <span>Address Record Note</span>
+                  </div>
+                  <div>
+                    {hqLocation.notes}
+                  </div>
+                </div>
+              </div>
+
+              {/* Regional Office Card */}
+              {regionalLocation && (
+                <div className="p-8 rounded-2xl bg-white border border-slate-200 shadow-sm space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-slate-700 font-bold text-xs uppercase tracking-wider">
+                      <MapPin className="w-4 h-4 text-slate-500" />
+                      <span>Regional Center</span>
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">
+                      Regional Office
+                    </span>
                   </div>
 
-                  {hydLocation.hasAlternateOption && (
-                    <div className="p-3 bg-amber-50/50 rounded-xl border border-amber-200/60">
-                      <span className="font-bold text-amber-950 block mb-1">Poster Variant (Lakshmikrishnaplaza 2nd Floor):</span>
-                      <p>{hydLocation.alternateAddressLines?.[0]}</p>
-                      <p>{hydLocation.alternateAddressLines?.[1]}</p>
-                      <p className="font-semibold text-slate-800 mt-1">
-                        Hyderabad, Telangana – {hydLocation.alternatePincode}
-                      </p>
-                    </div>
-                  )}
+                  <h3 className="text-xl font-heading font-bold text-slate-900">
+                    Vijayawada Regional Office
+                  </h3>
+
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    {regionalLocation.addressLines[0]}<br />
+                    {regionalLocation.addressLines[1]}<br />
+                    {regionalLocation.city} – {regionalLocation.pincode}, {regionalLocation.state}, {regionalLocation.country}
+                  </p>
+
+                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-[11px] text-slate-500">
+                    <em>Status:</em> {regionalLocation.verificationStatus}.
+                  </div>
                 </div>
               )}
 
-              <div className="pt-2 border-t border-slate-100 flex items-center gap-2 text-xs text-slate-500">
-                <Clock className="w-4 h-4 text-slate-400" />
-                <span>Centre Hours: Monday – Saturday, 7:00 AM – 9:30 PM IST</span>
+              {/* Direct Hotlines */}
+              <div className="p-8 rounded-2xl bg-[#0A192F] text-white space-y-4">
+                <div className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                  Direct Communications
+                </div>
+
+                <div className="space-y-3">
+                  <div>
+                    <div className="text-[11px] text-slate-400">Primary Enterprise Hotline</div>
+                    <a
+                      href={`tel:${primaryPhone.value}`}
+                      className="text-base font-bold text-white hover:text-cyan-300 transition-colors flex items-center gap-2 mt-0.5"
+                    >
+                      <Phone className="w-4 h-4 text-cyan-400" />
+                      <span>{primaryPhone.display}</span>
+                    </a>
+                  </div>
+
+                  <div>
+                    <div className="text-[11px] text-slate-400">Secondary Desk</div>
+                    <a
+                      href={`tel:${secondaryPhone.value}`}
+                      className="text-base font-bold text-white hover:text-cyan-300 transition-colors flex items-center gap-2 mt-0.5"
+                    >
+                      <Phone className="w-4 h-4 text-cyan-400" />
+                      <span>{secondaryPhone.display}</span>
+                    </a>
+                  </div>
+
+                  <div className="pt-2 border-t border-slate-800">
+                    <div className="text-[11px] text-slate-400">General Inquiries</div>
+                    <a
+                      href={`mailto:${CORPORATE_DATA.email.primary}`}
+                      className="text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-2 mt-0.5"
+                    >
+                      <Mail className="w-4 h-4 text-cyan-400" />
+                      <span>{CORPORATE_DATA.email.primary}</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div className="pt-3 border-t border-slate-800/80 text-[11px] text-slate-400 flex items-center gap-2">
+                  <ShieldCheck className="w-4 h-4 text-cyan-400 shrink-0" />
+                  <span>CIN: {CORPORATE_DATA.cin} (Incorporated 2018)</span>
+                </div>
               </div>
             </div>
 
-            {/* Vijayawada Branch Card */}
-            <div className="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-3">
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-100 px-2.5 py-1 rounded-md">
-                  Regional Office
-                </span>
-                <span className="text-[10px] bg-slate-100 text-slate-600 font-mono px-2 py-0.5 rounded">
-                  Client Confirmation
-                </span>
-              </div>
+            {/* Right Column: High-Grade Enterprise Contact Form (7 cols) */}
+            <div className="lg:col-span-7">
+              <div className="bg-slate-900 border border-slate-700/90 rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
 
-              <h3 className="text-lg font-bold font-heading text-slate-900 flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-slate-600" />
-                Vijayawada, Andhra Pradesh
-              </h3>
-
-              {vjaLocation && (
-                <div className="text-xs text-slate-600 space-y-1">
-                  <p>{vjaLocation.addressLines[0]}</p>
-                  <p>{vjaLocation.addressLines[1]}</p>
-                  <p className="font-semibold text-slate-800">
-                    Vijayawada, AP – {vjaLocation.pincode}, India
+                <div className="mb-8 relative z-10">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-xs font-semibold uppercase tracking-wider mb-2">
+                    <Sparkles className="w-3.5 h-3.5" />
+                    <span>Technical Inquiry Form</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-heading font-black text-white">
+                    Submit Project Requirements
+                  </h2>
+                  <p className="text-xs sm:text-sm text-slate-400 mt-1">
+                    Provide details on your organizational requirements. Our solutions practice will get in touch within 24 hours.
                   </p>
                 </div>
-              )}
-            </div>
 
-            {/* Direct Connect Options */}
-            <div className="bg-gradient-to-r from-[#0A2540] to-[#154580] rounded-3xl p-6 text-white space-y-4">
-              <h4 className="text-base font-bold font-heading text-white">
-                Admissions &amp; Counselling Desk
-              </h4>
-
-              <div className="space-y-2 text-xs">
-                {COMPANY_DATA.phoneNumbers.map((p, i) => (
-                  <a
-                    key={i}
-                    href={`tel:${p.value}`}
-                    className="flex items-center gap-3 p-2.5 bg-white/10 hover:bg-white/20 rounded-xl transition-colors text-slate-100 font-mono"
-                  >
-                    <Phone className="w-4 h-4 text-amber-300 shrink-0" />
-                    <span>{p.display}</span>
-                    <span className="ml-auto text-[10px] bg-blue-900/60 px-2 py-0.5 rounded text-blue-200 font-sans">
-                      {i === 0 ? 'Primary' : 'Support'}
-                    </span>
-                  </a>
-                ))}
-
-                <a
-                  href={`https://wa.me/${COMPANY_DATA.whatsappNumber.value}?text=${encodeURIComponent(COMPANY_DATA.whatsappNumber.prefilledMessage)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-2.5 bg-emerald-600/80 hover:bg-emerald-600 rounded-xl transition-colors text-white font-semibold"
-                >
-                  <MessageSquare className="w-4 h-4 text-emerald-200 shrink-0" />
-                  <span>Chat on WhatsApp Directly</span>
-                </a>
-
-                <a
-                  href={`mailto:${COMPANY_DATA.email.training}`}
-                  className="flex items-center gap-3 p-2.5 bg-white/10 hover:bg-white/20 rounded-xl transition-colors text-slate-100"
-                >
-                  <Mail className="w-4 h-4 text-sky-300 shrink-0" />
-                  <span>{COMPANY_DATA.email.training}</span>
-                </a>
+                <ContactForm className="relative z-10" />
               </div>
             </div>
-          </div>
-
-          {/* Right Column: Comprehensive Lead Generation Form */}
-          <div className="lg:col-span-7 bg-white rounded-3xl p-8 sm:p-10 border border-slate-200 shadow-md">
-            <div className="mb-6">
-              <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full uppercase tracking-wider">
-                Instant Lead Form
-              </span>
-              <h2 className="text-2xl sm:text-3xl font-bold font-heading text-slate-900 mt-2">
-                Enquire for Admissions &amp; Free Demo
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                Fill out the form below. Our senior counselor will connect with you to share batch schedules and free demo links.
-              </p>
-            </div>
-
-            {isSuccess ? (
-              <div className="text-center py-10 bg-slate-50 rounded-2xl p-6 border border-slate-200">
-                <div className="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="w-10 h-10" />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 mb-2">
-                  🎉 Thanks! Your Enquiry Has Been Received.
-                </h3>
-                <p className="text-slate-600 text-sm max-w-md mx-auto mb-6">
-                  Thank you <strong>{fullName}</strong>. Our senior technical counselor will contact you via WhatsApp / Call at <strong>{phone}</strong> shortly to confirm your free demo access.
-                </p>
-                <button
-                  onClick={() => setIsSuccess(false)}
-                  className="px-6 py-2.5 bg-blue-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider"
-                >
-                  Submit Another Enquiry
-                </button>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Full Name <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Ramesh Kumar"
-                      value={fullName}
-                      onChange={(e) => setFullName(e.target.value)}
-                      className={`w-full px-3.5 py-2.5 text-sm rounded-xl border ${
-                        errors.fullName ? 'border-red-500 bg-red-50/20' : 'border-slate-300'
-                      } focus:outline-none focus:ring-2 focus:ring-blue-600`}
-                    />
-                    {errors.fullName && <p className="text-red-500 text-xs mt-1">{errors.fullName}</p>}
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Phone Number <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="tel"
-                      required
-                      placeholder="e.g. 9876543210"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      className={`w-full px-3.5 py-2.5 text-sm rounded-xl border ${
-                        errors.phone ? 'border-red-500 bg-red-50/20' : 'border-slate-300'
-                      } focus:outline-none focus:ring-2 focus:ring-blue-600`}
-                    />
-                    {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Email Address <span className="text-slate-400 font-normal">(Optional)</span>
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="e.g. ramesh@example.com"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      className={`w-full px-3.5 py-2.5 text-sm rounded-xl border ${
-                        errors.email ? 'border-red-500 bg-red-50/20' : 'border-slate-300'
-                      } focus:outline-none focus:ring-2 focus:ring-blue-600`}
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Interested Technology Course <span className="text-red-500">*</span>
-                    </label>
-                    <select
-                      value={course}
-                      onChange={(e) => setCourse(e.target.value)}
-                      className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 bg-white focus:outline-none focus:ring-2 focus:ring-blue-600"
-                    >
-                      {COURSES.map((c) => (
-                        <option key={c.id} value={c.title}>
-                          {c.title}
-                        </option>
-                      ))}
-                      <option value="Enterprise Corporate Custom Training">Other / Enterprise Training</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Current Qualification
-                    </label>
-                    <select
-                      value={qualification}
-                      onChange={(e) => setQualification(e.target.value)}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-white"
-                    >
-                      <option value="B.Tech / B.E.">B.Tech / B.E.</option>
-                      <option value="BCA / MCA">BCA / MCA</option>
-                      <option value="B.Sc / M.Sc">B.Sc / M.Sc</option>
-                      <option value="Working IT Professional">Working IT Professional</option>
-                      <option value="Non-IT Background">Non-IT Switcher</option>
-                      <option value="Other">Other</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Experience Level
-                    </label>
-                    <select
-                      value={experience}
-                      onChange={(e) => setExperience(e.target.value)}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-white"
-                    >
-                      <option value="Fresh Graduate (0 years)">Fresh Graduate (0 yrs)</option>
-                      <option value="1 - 3 Years">1 - 3 Years</option>
-                      <option value="3 - 6 Years">3 - 6 Years</option>
-                      <option value="6+ Years">6+ Years (Senior)</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1">
-                      Preferred Batch
-                    </label>
-                    <select
-                      value={preferredBatch}
-                      onChange={(e) => setPreferredBatch(e.target.value)}
-                      className="w-full px-3 py-2 text-xs rounded-xl border border-slate-300 bg-white"
-                    >
-                      <option value="Morning Batch (7:30 AM)">Morning 7:30 AM</option>
-                      <option value="Evening Batch (8:30 PM)">Evening 8:30 PM</option>
-                      <option value="Weekend Batch">Weekend Batch</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Preferred Training Mode
-                  </label>
-                  <div className="grid grid-cols-2 gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setMode('Online Live Training')}
-                      className={`px-3 py-2.5 rounded-xl border text-xs font-semibold text-center transition-all cursor-pointer ${
-                        mode === 'Online Live Training'
-                          ? 'border-blue-600 bg-blue-50 text-blue-800'
-                          : 'border-slate-200 text-slate-600 hover:border-slate-300'
-                      }`}
-                    >
-                      🌐 Online Live Interactive
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setMode('Classroom (Hyderabad KPHB)')}
-                      className={`px-3 py-2.5 rounded-xl border text-xs font-semibold text-center transition-all cursor-pointer ${
-                        mode === 'Classroom (Hyderabad KPHB)'
-                          ? 'border-blue-600 bg-blue-50 text-blue-800'
-                          : 'border-slate-200 text-slate-600 hover:border-slate-300'
-                      }`}
-                    >
-                      🏢 Classroom (Hyderabad KPHB)
-                    </button>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1">
-                    Message or Specific Query
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="Ask questions about course syllabus, demo timing, fees, or corporate discounts..."
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="w-full px-3.5 py-2.5 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3.5 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-bold rounded-xl text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-                >
-                  {isSubmitting ? (
-                    'Submitting Enquiry...'
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4" />
-                      Submit Enquiry &amp; Reserve Free Demo
-                    </>
-                  )}
-                </button>
-
-                <div className="pt-2 text-center text-xs text-slate-500 flex items-center justify-center gap-4">
-                  <span className="flex items-center gap-1">
-                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" /> 100% Confidential
-                  </span>
-                  <span>•</span>
-                  <span>First 4 Sessions 100% Free</span>
-                </div>
-              </form>
-            )}
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
