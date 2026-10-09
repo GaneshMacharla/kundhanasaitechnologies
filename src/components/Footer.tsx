@@ -33,22 +33,12 @@ export const Footer: React.FC = () => {
           
           {/* Col 1: Corporate Profile (4 cols) */}
           <div className="lg:col-span-4 space-y-5">
-            <Link to="/" className="flex items-center gap-3.5 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-700 via-cyan-500 to-sky-300 p-0.5 shadow-md shadow-cyan-500/10">
-                <div className="w-full h-full bg-[#050E1D] rounded-[10px] flex items-center justify-center">
-                  <span className="font-heading font-black text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-white">
-                    KS
-                  </span>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-heading font-black text-lg text-white tracking-tight leading-none">
-                  KUNDHANA SAI
-                </span>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-cyan-400 mt-1">
-                  IT SOLUTIONS PVT. LTD.
-                </span>
-              </div>
+            <Link to="/" className="inline-block group py-1" aria-label="Kundhana Sai IT Solutions">
+              <img 
+                src="/images/logo-dark.png" 
+                alt="Kundhana Sai IT Solutions Pvt. Ltd." 
+                className="h-11 sm:h-12 w-auto max-w-[230px] sm:max-w-[260px] object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+              />
             </Link>
 
             <p className="text-sm text-slate-400 leading-relaxed max-w-sm">

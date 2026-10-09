@@ -116,21 +116,12 @@ export const LandingPage: React.FC = () => {
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           {/* Modern Logo */}
-          <a href="#" className="flex items-center gap-3 group">
-            <div className="w-11 h-11 rounded-2xl bg-gradient-to-tr from-[#0A2540] via-blue-600 to-sky-400 flex items-center justify-center text-white shadow-md shadow-blue-500/10 group-hover:shadow-blue-500/25 transition-all">
-              <span className="font-heading font-black text-xl text-amber-300">K</span>
-              <span className="font-heading font-bold text-base -ml-1 text-white">S</span>
-            </div>
-            <div>
-              <div className="font-heading font-extrabold text-base sm:text-lg text-slate-900 tracking-tight leading-none group-hover:text-blue-600 transition-colors">
-                KUNDHANA SAI
-              </div>
-              <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500 mt-1 flex items-center gap-1.5">
-                <span className="text-blue-600">Technologies</span>
-                <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                <span>Hyderabad</span>
-              </div>
-            </div>
+          <a href="#" className="flex items-center group py-1" aria-label="Kundhana Sai IT Solutions">
+            <img 
+              src="/images/logo-light.png" 
+              alt="Kundhana Sai IT Solutions Pvt. Ltd." 
+              className="h-10 sm:h-11 w-auto max-w-[210px] sm:max-w-[240px] object-contain transition-transform duration-300 group-hover:scale-[1.02]" 
+            />
           </a>
 
           {/* Navigation Links */}
@@ -925,18 +916,12 @@ export const LandingPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
             {/* Institute Identity */}
             <div className="lg:col-span-5 space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-blue-700 via-blue-500 to-sky-400 flex items-center justify-center text-white font-black text-lg">
-                  <span className="text-amber-300">K</span>S
-                </div>
-                <div>
-                  <span className="font-heading font-extrabold text-base text-white tracking-tight block">
-                    KUNDHANA SAI TECHNOLOGIES
-                  </span>
-                  <span className="text-[11px] text-slate-400">
-                    Kundhana Sai IT Solutions Pvt. Ltd.
-                  </span>
-                </div>
+              <div className="flex items-center py-1">
+                <img 
+                  src="/images/logo-dark.png" 
+                  alt="Kundhana Sai IT Solutions Pvt. Ltd." 
+                  className="h-11 sm:h-12 w-auto max-w-[230px] sm:max-w-[260px] object-contain" 
+                />
               </div>
               <p className="text-slate-400 text-xs leading-relaxed max-w-sm">
                 Premier Hyderabad IT training and solutions company specializing in GenAI, Data Engineering, Snowflake, BigQuery, Talend, and .NET Full Stack development.
