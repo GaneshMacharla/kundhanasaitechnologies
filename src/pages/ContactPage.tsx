@@ -158,15 +158,37 @@ export const ContactPage: React.FC = () => {
                     </a>
                   </div>
 
-                  <div className="pt-2 border-t border-slate-800">
-                    <div className="text-[11px] text-slate-400">General Inquiries</div>
-                    <a
-                      href={`mailto:${CORPORATE_DATA.email.primary}`}
-                      className="text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-2 mt-0.5"
-                    >
-                      <Mail className="w-4 h-4 text-cyan-400" />
-                      <span>{CORPORATE_DATA.email.primary}</span>
-                    </a>
+                  <div className="pt-2 border-t border-slate-800 space-y-2.5">
+                    <div>
+                      <div className="text-[11px] text-slate-400">General Inquiries</div>
+                      <a
+                        href={`mailto:${CORPORATE_DATA.email.primary}`}
+                        className="text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-2 mt-0.5"
+                      >
+                        <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>{CORPORATE_DATA.email.primary}</span>
+                      </a>
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-slate-400">Technical Support Desk</div>
+                      <a
+                        href={`mailto:${CORPORATE_DATA.email.support}`}
+                        className="text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-2 mt-0.5"
+                      >
+                        <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>{CORPORATE_DATA.email.support}</span>
+                      </a>
+                    </div>
+                    <div>
+                      <div className="text-[11px] text-slate-400">Human Resources & Careers</div>
+                      <a
+                        href={`mailto:${CORPORATE_DATA.email.hr}`}
+                        className="text-sm font-semibold text-cyan-300 hover:text-cyan-200 transition-colors flex items-center gap-2 mt-0.5"
+                      >
+                        <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                        <span>{CORPORATE_DATA.email.hr}</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
 

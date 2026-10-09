@@ -179,9 +179,26 @@ export const Footer: React.FC = () => {
               <a 
                 href={`mailto:${CORPORATE_DATA.email.primary}`}
                 className="flex items-center gap-2 text-xs text-slate-300 hover:text-cyan-300 transition-colors"
+                title="General & Business Inquiries"
               >
                 <Mail className="w-3.5 h-3.5 text-cyan-400" />
                 <span>{CORPORATE_DATA.email.primary}</span>
+              </a>
+              <a 
+                href={`mailto:${CORPORATE_DATA.email.support}`}
+                className="flex items-center gap-2 text-xs text-slate-400 hover:text-cyan-300 transition-colors"
+                title="Technical Support Desk"
+              >
+                <span className="text-[10px] text-cyan-500 font-bold uppercase tracking-wider">Support:</span>
+                <span>{CORPORATE_DATA.email.support}</span>
+              </a>
+              <a 
+                href={`mailto:${CORPORATE_DATA.email.hr}`}
+                className="flex items-center gap-2 text-xs text-slate-400 hover:text-cyan-300 transition-colors"
+                title="Careers & Human Resources"
+              >
+                <span className="text-[10px] text-cyan-500 font-bold uppercase tracking-wider">Careers:</span>
+                <span>{CORPORATE_DATA.email.hr}</span>
               </a>
             </div>
           </div>

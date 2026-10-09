@@ -39,6 +39,8 @@ export interface CorporateConfig {
   corporateStatus: string;
   email: {
     primary: string;
+    support: string;
+    hr: string;
     inquiries: string;
     careers: string;
   };
@@ -66,9 +68,11 @@ export const CORPORATE_DATA: CorporateConfig = {
   cinVerified: true,
   corporateStatus: 'Active Private Limited Company (Incorporated 2018 under RoC Hyderabad)',
   email: {
-    primary: 'info@kundhanasaitechnologies.com',
-    inquiries: 'consulting@kundhanasaitechnologies.com',
-    careers: 'careers@kundhanasaitechnologies.com'
+    primary: 'info@kundhanasai.in',
+    support: 'support@kundhanasai.in',
+    hr: 'hr@kundhanasai.in',
+    inquiries: 'info@kundhanasai.in',
+    careers: 'hr@kundhanasai.in'
   },
   phoneNumbers: [
     {

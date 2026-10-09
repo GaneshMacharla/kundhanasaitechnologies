@@ -18,7 +18,7 @@ Built according to the **Product Requirements Document (PRD)** specifications, c
   - Hyderabad Headquarters: Plot No. 45, KPHB 9th Phase, Nexus Mall Road, Lakshmi Krishna Plaza, Kukatpally, Hyderabad – 500072, Telangana
   - Regional Office: 1st Floor, D.No. 59A-8/10-2, Guru Nanak Colony, Vijayawada – 520007, Andhra Pradesh
   - Corporate Hotlines: `+91 91000 87899` & `+91 88866 57899`
-  - Inquiries: `info@kundhanasaitechnologies.com`
+  - Inquiries: `info@kundhanasai.in`
 
 ---
 

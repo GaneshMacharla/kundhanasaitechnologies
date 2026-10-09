@@ -40,37 +40,65 @@ export const EnquiryPage: React.FC = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setIsSubmitting(true);
-    setTimeout(() => {
-      const enquiryLead = {
-        id: 'DEMO-' + Date.now(),
-        fullName,
-        phone,
-        email,
-        course,
-        qualification,
-        experience,
-        mode,
-        preferredBatch,
-        message,
-        createdAt: new Date().toISOString()
-      };
 
-      try {
-        const existing = JSON.parse(localStorage.getItem('kst_leads') || '[]');
-        existing.push(enquiryLead);
-        localStorage.setItem('kst_leads', JSON.stringify(existing));
-      } catch (err) {
-        console.warn(err);
-      }
+    const enquiryLead = {
+      id: 'DEMO-' + Date.now(),
+      fullName,
+      phone,
+      email,
+      course,
+      qualification,
+      experience,
+      mode,
+      preferredBatch,
+      message,
+      createdAt: new Date().toISOString()
+    };
 
-      setIsSubmitting(false);
-      setIsSuccess(true);
-    }, 600);
+    try {
+      const existing = JSON.parse(localStorage.getItem('kst_leads') || '[]');
+      existing.push(enquiryLead);
+      localStorage.setItem('kst_leads', JSON.stringify(existing));
+    } catch (err) {
+      console.warn(err);
+    }
+
+    try {
+      await fetch('https://formsubmit.co/ajax/info@kundhanasai.in', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Free Demo Booking: ${fullName} [${course}]`,
+          _replyto: email || undefined,
+          _template: 'table',
+          _captcha: 'false',
+          'Booking Reference ID': enquiryLead.id,
+          'Full Name': fullName,
+          'Phone / WhatsApp': phone,
+          'Email': email || 'Not provided',
+          'Course of Interest': course,
+          'Qualification': qualification || 'N/A',
+          'Experience Level': experience || 'N/A',
+          'Preferred Learning Mode': mode,
+          'Preferred Batch Time': preferredBatch,
+          'Message / Specific Requirements': message || 'None',
+          'Submitted At': new Date().toLocaleString()
+        })
+      });
+    } catch (netErr) {
+      console.warn('Demo booking email dispatch failed:', netErr);
+    }
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
 
   return (

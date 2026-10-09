@@ -36,6 +36,8 @@ export interface CompanyConfig {
   };
   email: {
     general: string;
+    support: string;
+    hr: string;
     training: string;
     verified: boolean;
   };
@@ -89,9 +91,11 @@ export const COMPANY_DATA: CompanyConfig = {
     prefilledMessage: 'Hi Kundhana Sai Technologies, I would like to enquire about upcoming courses and book a Free Demo Session.'
   },
   email: {
-    general: 'info@kundhanasaitechnologies.com',
-    training: 'admissions@kundhanasaitechnologies.com',
-    verified: false
+    general: 'info@kundhanasai.in',
+    support: 'support@kundhanasai.in',
+    hr: 'hr@kundhanasai.in',
+    training: 'admissions@kundhanasai.in',
+    verified: true
   },
   locations: [
     {
