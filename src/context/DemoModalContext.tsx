@@ -17,7 +17,7 @@ export const DemoModalProvider: React.FC<{ children: React.ReactNode }> = ({ chi
     const courseTitle = courseName || selectedCourse || 'IT Training Course';
     setSelectedCourse(courseTitle);
     const message = `Hi Kundhana Sai Technologies, I would like to attend the Free 4-Day Demo Session for *${courseTitle}*. Please share the schedule and demo link.`;
-    const whatsappUrl = `https://wa.me/919100087899?text=${encodeURIComponent(message)}`;
+    const whatsappUrl = `https://wa.me/918123077723?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
   };
 

@@ -49,6 +49,11 @@ export interface CorporateConfig {
     value: string;
     type: string;
   }[];
+  whatsappNumber: {
+    display: string;
+    value: string;
+    prefilledMessage: string;
+  };
   locations: CorporateLocation[];
   leadership: LeadershipMember[];
   valuePropositions: ValueProposition[];
@@ -76,16 +81,21 @@ export const CORPORATE_DATA: CorporateConfig = {
   },
   phoneNumbers: [
     {
-      display: '+91 91000 87899',
-      value: '+919100087899',
+      display: '+91 97004 65570',
+      value: '+919700465570',
       type: 'Primary Enterprise Hotline'
     },
     {
-      display: '+91 88866 57899',
-      value: '+918886657899',
-      type: 'Direct Consulting Desk'
+      display: '+91 81230 77723',
+      value: '+918123077723',
+      type: 'Consulting & WhatsApp Desk'
     }
   ],
+  whatsappNumber: {
+    display: '+91 81230 77723',
+    value: '918123077723',
+    prefilledMessage: 'Hi Kundhana Sai IT Solutions, I would like to inquire about your enterprise technology services and solutions.'
+  },
   locations: [
     {
       city: 'Hyderabad',

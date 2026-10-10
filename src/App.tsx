@@ -5,6 +5,7 @@ import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { ConsultationModal } from './components/ConsultationModal';
 import { ScrollToTop } from './components/ScrollToTop';
+import { WhatsAppFloatingButton } from './components/WhatsAppFloatingButton';
 
 import { HomePage } from './pages/HomePage';
 import { AboutPage } from './pages/AboutPage';
@@ -38,6 +39,7 @@ export const App: React.FC = () => {
 
         <Footer />
         <ConsultationModal />
+        <WhatsAppFloatingButton />
       </div>
     </ConsultationProvider>
   );

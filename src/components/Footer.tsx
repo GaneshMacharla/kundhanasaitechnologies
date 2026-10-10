@@ -172,9 +172,28 @@ export const Footer: React.FC = () => {
               <a 
                 href={`tel:${primaryPhone.value}`}
                 className="flex items-center gap-2 text-xs text-slate-300 hover:text-cyan-300 transition-colors"
+                title="Primary Enterprise Hotline"
               >
                 <Phone className="w-3.5 h-3.5 text-cyan-400" />
                 <span>{primaryPhone.display}</span>
+              </a>
+              <a 
+                href={`tel:${secondaryPhone.value}`}
+                className="flex items-center gap-2 text-xs text-slate-300 hover:text-cyan-300 transition-colors"
+                title="Consulting Desk"
+              >
+                <Phone className="w-3.5 h-3.5 text-cyan-400" />
+                <span>{secondaryPhone.display}</span>
+              </a>
+              <a 
+                href={`https://wa.me/${CORPORATE_DATA.whatsappNumber.value}?text=${encodeURIComponent(CORPORATE_DATA.whatsappNumber.prefilledMessage)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
+                title="WhatsApp Direct Support"
+              >
+                <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse" />
+                <span>WhatsApp: {CORPORATE_DATA.whatsappNumber.display}</span>
               </a>
               <a 
                 href={`mailto:${CORPORATE_DATA.email.primary}`}

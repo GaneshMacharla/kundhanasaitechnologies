@@ -75,20 +75,20 @@ export const COMPANY_DATA: CompanyConfig = {
   ],
   phoneNumbers: [
     {
-      display: '+91 91000 87899',
-      value: '+919100087899',
-      note: 'VERIFY_WITH_CLIENT — Primary admissions line'
+      display: '+91 97004 65570',
+      value: '+919700465570',
+      note: 'Primary enterprise & admissions line'
     },
     {
-      display: '+91 88866 57899',
-      value: '+918886657899',
-      note: 'VERIFY_WITH_CLIENT — Secondary admissions line'
+      display: '+91 81230 77723',
+      value: '+918123077723',
+      note: 'Consulting & WhatsApp Desk'
     }
   ],
   whatsappNumber: {
-    display: '+91 91000 87899',
-    value: '919100087899',
-    prefilledMessage: 'Hi Kundhana Sai Technologies, I would like to enquire about upcoming courses and book a Free Demo Session.'
+    display: '+91 81230 77723',
+    value: '918123077723',
+    prefilledMessage: 'Hi Kundhana Sai Technologies, I would like to connect regarding your services.'
   },
   email: {
     general: 'info@kundhanasai.in',

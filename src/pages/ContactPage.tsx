@@ -8,7 +8,8 @@ import {
   Building2, 
   Sparkles,
   Info,
-  CheckCircle2
+  CheckCircle2,
+  MessageSquare
 } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
 import { CORPORATE_DATA } from '../data/corporateData';
@@ -148,13 +149,29 @@ export const ContactPage: React.FC = () => {
                   </div>
 
                   <div>
-                    <div className="text-[11px] text-slate-400">Secondary Desk</div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-[11px] text-slate-400">Consulting &amp; WhatsApp Desk</span>
+                      <span className="inline-flex items-center gap-1 text-[10px] text-emerald-400 bg-emerald-950/60 border border-emerald-800/60 px-1.5 py-0.5 rounded-full font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
+                        WhatsApp
+                      </span>
+                    </div>
                     <a
                       href={`tel:${secondaryPhone.value}`}
                       className="text-base font-bold text-white hover:text-cyan-300 transition-colors flex items-center gap-2 mt-0.5"
                     >
                       <Phone className="w-4 h-4 text-cyan-400" />
                       <span>{secondaryPhone.display}</span>
+                    </a>
+                    <a
+                      href={`https://wa.me/${CORPORATE_DATA.whatsappNumber.value}?text=${encodeURIComponent(CORPORATE_DATA.whatsappNumber.prefilledMessage)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-2 px-3 py-1.5 rounded-lg bg-emerald-600/20 hover:bg-emerald-600/30 text-emerald-300 hover:text-emerald-200 border border-emerald-500/30 text-xs font-semibold transition-all group"
+                      title="Chat directly on WhatsApp"
+                    >
+                      <MessageSquare className="w-3.5 h-3.5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                      <span>Chat on WhatsApp ({secondaryPhone.display})</span>
                     </a>
                   </div>
 
